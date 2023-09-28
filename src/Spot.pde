@@ -2,7 +2,7 @@ public class Spot {
   // Coordinates in 3D space
   int x = 0, y = 0, z = 0;
 
-  // Costs for pathfinding algorithms
+  // Costs for pathfinding algorithm
   float f = 0, h = 0, g = 0;
 
   // Indicates if this spot is an obstacle
