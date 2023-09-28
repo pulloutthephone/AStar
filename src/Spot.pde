@@ -26,7 +26,7 @@ public class Spot {
     }
   }
 
-  // Display the Spot as a box with specified color and dimensions
+  // Display the spot as a box with specified color and dimensions
   void show(int R, int G, int B, float nW, float nH, float nD, float alpha) {
     stroke(0);
     fill(R, G, B, alpha);
