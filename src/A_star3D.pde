@@ -94,7 +94,7 @@ public class A_star3D {
       if (current == target) { // If the current spot is the target, the algorithm has finnished
         println("Reached the end!");
 
-        // Add to the path all the spots that con
+        // Include in the path all the individual spots that make it up
         path.add(current);
         while (current.parent != null) {
           path.add(current.parent);
