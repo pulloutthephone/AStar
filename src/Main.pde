@@ -24,9 +24,9 @@ void setup() {
 
   // Create the A_star3D object
   int cols = 10, rows = 10, aisle = 10; // Dimensions of the grid
-  int xstart = 1, ystart = 1, zstart = 1, xend = cols, yend = rows, zend = aisle; // Positions of the start and target spots
+  int xstart = 1, ystart = 1, zstart = 1, xend = cols-1, yend = rows-1, zend = aisle-1; // Positions of the start and target spots
   // Note: Ensure that the values of xstart, ystart, zstart, xend, yend, and zend
-  // fall within the valid intervals: x -> [1, cols], y -> [1, rows], z -> [1, aisle]
+  // fall within the valid intervals: x -> [0, cols-1], y -> [0, rows-1], z -> [0, aisle-1]
   aStar = new A_star3D(xstart, ystart, zstart, xend, yend, zend, cols, rows, aisle); // Initializes the aStar object
 
   // Import robot parts as PShape objects

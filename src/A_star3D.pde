@@ -18,7 +18,7 @@ public class A_star3D {
 
   public A_star3D(int xstart, int ystart, int zstart, int xend, int yend, int zend, int cols, int rows, int aisle) {
     // Map of the world
-    Spot grid[][][] = new Spot[cols + 2][rows + 2][aisle + 2];
+    Spot grid[][][] = new Spot[cols][rows][aisle];
 
     // Offset to center the grid
     int xoffset = -cols/2;
@@ -27,19 +27,14 @@ public class A_star3D {
 
     // Create the grid with spots
     int x = xoffset;
-    for (int i = 0; i <= cols + 1; i++) {
+    for (int i = 0; i < cols; i++) {
       int y = 0;
-      for (int j = 0; j <= rows + 1; j++) {
+      for (int j = 0; j < rows; j++) {
         int z = zoffset;
-        for (int k = 0; k <= aisle + 1; k++) {
-          if (x == xoffset || y == 0 || z == zoffset || x == cols + 1 + xoffset || y == rows + 1 || z == aisle + 1 + zoffset) {
-            // Defines the value as null as it is a border
-            grid[i][j][k] = null;
-          } else {
-            grid[i][j][k] = new Spot(x, y, z);
-            if (grid[i][j][k].wall == true) {
-              obstacles.add(grid[i][j][k]);
-            }
+        for (int k = 0; k < aisle; k++) {
+          grid[i][j][k] = new Spot(x, y, z);
+          if (grid[i][j][k].wall == true) {
+            obstacles.add(grid[i][j][k]);
           }
           z++;
         }
@@ -49,9 +44,9 @@ public class A_star3D {
     }
 
     // Determine neighbors for each Spot
-    for (int i = 1; i <= cols; i++) {
-      for (int j = 1; j <= rows; j++) {
-        for (int k = 1; k <= aisle; k++) {
+    for (int i = 0; i < cols; i++) {
+      for (int j = 0; j < rows; j++) {
+        for (int k = 0; k < aisle; k++) {
           if (grid[i][j][k] != null) {
             grid[i][j][k].addNeighbors(i, j, k, grid);
           }

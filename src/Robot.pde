@@ -1,12 +1,18 @@
 public class Robot {
-
+  // Shapes representing different parts of the robot
   PShape base, shoulder, upArm, loArm, end;
+
+  // Angles for the robot's joint rotation
   float alpha = 0, beta = 0, gamma = 0;
 
+  // Iterator and positions for path interpolation
   int iterator = 0;
   float xlp = 0, ylp = 0, zlp = 0;
+
+  // Variables for timing path interpolation
   int currentMillis = 0, previousMillis = 0, interval = 3000;
 
+  // Constructor to initialize robot parts
   public Robot(PShape base_, PShape shoulder_, PShape upArm_, PShape loArm_, PShape end_) {
     base = base_;
     shoulder = shoulder_;
@@ -21,6 +27,7 @@ public class Robot {
     end.disableStyle();
   }
 
+  // Inverse Kinematics calculation for robot arm position
   void IK(float x, float y, float z) {
     int lenShoulder = 15;
     int lenArm = 50;
@@ -42,12 +49,12 @@ public class Robot {
   }
 
   // Interpolate the path of the robot's end effector
-  void pathInterp(int spotWidth, int spotHeight, int spotDepth, ArrayList <Spot> path) {
+  void pathInterp(int spotWidth, int spotHeight, int spotDepth, ArrayList<Spot> path) {
     currentMillis = millis();
     xlp = lerp(xlp, path.get(iterator).x * spotWidth, 0.05);
     ylp = lerp(ylp, path.get(iterator).y * spotHeight, 0.05);
     zlp = lerp(zlp, path.get(iterator).z * spotDepth, 0.05);
-    robot.IK(xlp, ylp, zlp);
+    IK(xlp, ylp, zlp);
 
     if (currentMillis - previousMillis >= interval) {
       if (iterator == path.size()-1) {
@@ -59,6 +66,7 @@ public class Robot {
     }
   }
 
+  // Display the robot's arm parts in their respective positions
   void show() {
     noStroke();
     fill(#FFE308);
