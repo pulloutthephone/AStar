@@ -15,7 +15,7 @@ public class Spot {
     y = y_;
     z = z_;
 
-    // Randomly determine if this Spot is a wall (20% chance)
+    // Randomly determine if this Spot is an obstacle (20% chance)
     if (random(0, 1) < 0.2) {
       wall = true;
     }
